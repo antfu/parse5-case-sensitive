@@ -135,9 +135,6 @@ function isAsciiLetter(cp: number): boolean {
 function isAsciiAlphaNumeric(cp: number): boolean {
     return isAsciiLetter(cp) || isAsciiDigit(cp);
 }
-function toAsciiLower(cp: number): number {
-    return cp + 0x00_20;
-}
 
 function isWhitespace(cp: number): boolean {
     return cp === $.SPACE || cp === $.LINE_FEED || cp === $.TABULATION || cp === $.FORM_FEED;
@@ -1139,7 +1136,7 @@ export class Tokenizer {
                 break;
             }
             default: {
-                token.tagName += String.fromCodePoint(isAsciiUpper(cp) ? toAsciiLower(cp) : cp);
+                token.tagName += String.fromCodePoint(cp);
             }
         }
     }
@@ -1667,7 +1664,7 @@ export class Tokenizer {
                 break;
             }
             default: {
-                this.currentAttr.name += String.fromCodePoint(isAsciiUpper(cp) ? toAsciiLower(cp) : cp);
+                this.currentAttr.name += String.fromCodePoint(cp);
             }
         }
     }
@@ -2224,7 +2221,7 @@ export class Tokenizer {
     //------------------------------------------------------------------
     private _stateBeforeDoctypeName(cp: number): void {
         if (isAsciiUpper(cp)) {
-            this._createDoctypeToken(String.fromCharCode(toAsciiLower(cp)));
+            this._createDoctypeToken(String.fromCharCode(cp));
             this.state = State.DOCTYPE_NAME;
         } else
             switch (cp) {
@@ -2297,7 +2294,7 @@ export class Tokenizer {
                 break;
             }
             default: {
-                token.name += String.fromCodePoint(isAsciiUpper(cp) ? toAsciiLower(cp) : cp);
+                token.name += String.fromCodePoint(cp);
             }
         }
     }

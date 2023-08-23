@@ -3687,7 +3687,7 @@ function endTagInForeignContent<T extends TreeAdapterTypeMap>(p: Parser<T>, toke
 
         const tagName = p.treeAdapter.getTagName(element);
 
-        if (tagName.toLowerCase() === token.tagName) {
+        if (tagName.toLowerCase() === token.tagName.toLowerCase()) {
             //NOTE: update the token tag name for `_setEndLocation`.
             token.tagName = tagName;
             p.openElements.shortenToLength(i);

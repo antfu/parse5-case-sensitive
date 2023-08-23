@@ -1,40 +1,29 @@
-<p align="center">
-    <a href="https://github.com/inikulin/parse5">
-        <img src="https://raw.github.com/inikulin/parse5/master/media/logo.png" alt="parse5" />
-    </a>
-</p>
+# parse5-case-sensitive
 
-<p align="center">
-<i>HTML parsing/serialization toolset for Node.js. <a href="https://html.spec.whatwg.org/multipage/">WHATWG HTML Living Standard (aka HTML5)</a>-compliant.</i>
-</p>
+[![NPM version](https://img.shields.io/npm/v/parse5-case-sensitive?color=a1b858&label=)](https://www.npmjs.com/package/parse5-case-sensitive)
 
-<p align="center">
-  <a href="https://github.com/inikulin/parse5/actions/workflows/nodejs-test.yml"><img alt="Build Status" src="https://github.com/inikulin/parse5/actions/workflows/nodejs-test.yml/badge.svg"></a>
-  <a href="https://www.npmjs.com/package/parse5"><img alt="NPM Version" src="https://img.shields.io/npm/v/parse5.svg"></a>
-  <a href="https://npmjs.org/package/parse5"><img alt="Downloads" src="https://img.shields.io/npm/dm/parse5.svg"></a>
-  <a href="https://npmjs.org/package/parse5"><img alt="Downloads total" src="https://img.shields.io/npm/dt/parse5.svg"></a>
-  <a href="https://coveralls.io/github/inikulin/parse5"><img alt="Coverage" src="https://img.shields.io/coveralls/github/inikulin/parse5/master"></a>
-</p>
+A fork of [parse5](https://github.com/inikulin/parse5), supporting for case-sensitive parsing.
 
-<p align="center">
-<b><i>parse5</i></b> provides nearly everything you may need when dealing with HTML. It's the fastest spec-compliant HTML parser
-for Node to date. It parses HTML the way the latest version of your browser does. It has proven itself reliable in such projects
-as <a href="https://github.com/tmpvar/jsdom">jsdom</a>, <a href="https://angular.io">Angular</a>,
-<a href="https://lit.dev">Lit</a>, <a href="https://github.com/cheeriojs/cheerio">Cheerio</a>,
-<a href="https://github.com/rehypejs/rehype">rehype</a> and many more.
-</p>
+`parse5` automatically converts all tag names, attribute names and attribute values to lowercase. It's intended and they have no plans to support that (https://github.com/inikulin/parse5/issues/210, https://github.com/inikulin/parse5/issues/116).
 
----
+This fork removed such auto-conversion (and it will be not compatible HTML spec, use it when you are sure what you are doing) and preserved the cases in the output AST.
 
-<p align="center">
-  <a href="https://github.com/inikulin/parse5/tree/master/docs/list-of-packages.md">List of parse5 toolset packages</a>
-</p>
+## Installation
 
-<p align="center">
-  <a href="https://astexplorer.net/#/1CHlCXc4n4">Online playground</a>
-</p>
+```bash
+npm i parse5-case-sensitive
+```
 
-<p align="center">
-  <a href="https://github.com/inikulin/parse5/releases">Changelog</a>
-</p>
-</p>
+If you want to override the original `parse5` package, you can do it by adding the following to your `package.json`:
+
+```json
+{
+    "resolutions": {
+        "parse5": "npm:parse5-case-sensitive@7.1.2-0"
+    }
+}
+```
+
+## Versioning
+
+This fork is planned to be kept in sync with the original `parse5` package, the versioning will be in sync with `parse5` with an extra `-0` suffix indicating the patch versions of `parse5-case-sensitive`.
